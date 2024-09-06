@@ -19,7 +19,7 @@ class User(Base):
 class Post(Base):
     __tablename__ = 'post'
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
     type = Column(String(250), nullable=False)
     url = Column(String(250), nullable=False)
 
@@ -27,14 +27,14 @@ class Comment(Base):
     __tablename__ = 'comment'
     id = Column(Integer, primary_key=True)
     comment_text = Column(String(250), nullable=False)
-    author_id = Column(Integer, ForeignKey('user.id'))
-    post_id = Column(Integer, ForeignKey('post.id'))
+    author_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    post_id = Column(Integer, ForeignKey('post.id'), nullable=False)
 
 class Follower(Base):
     __tablename__ = 'follower'
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    follower_id = Column(Integer, ForeignKey('user.id'))
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    follower_id = Column(Integer, ForeignKey('user.id'), nullable=False)
 
 
 ## Draw from SQLAlchemy base
